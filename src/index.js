@@ -2,13 +2,11 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom'; //The default path is node_modules/
 import YTSearch from 'youtube-api-search';
-
 import SearchBar from './components/search_bar'; //Need the full path
+import VideoList from './components/video_list';
 
 //YouTube API Key. The API is added by npm install --save youtube-api-search
 const API_KEY = 'AIzaSyBCCso8b4QCX8CDR0YOJ6dAvPGV6ij04tg'
-
-
 
 //Use class instead of const
 class App extends Component {
@@ -19,17 +17,18 @@ class App extends Component {
 
     //(data) => is the same as function(data)
     //'surfboards' is the search keyword.
-    YTSearch({key : API_KEY, term: 'surfboards'}, (data) => {
-      this.setState({ videos: data});
+    YTSearch({key : API_KEY, term: 'surfboards'}, (videos) => {
+      //this.setState({ videos: data}); //change (videos) => to (data) =>
       //this.setState({ videos: videos}); //change (data) => to (videos) =>
-      //this.setState({ videos }); //This works only when key and value is the same.
+      this.setState({ videos }); //This works only when key and value is the same.
     });
   }
 
   render() {
-    return (
+    return ( //Pass the props 'videos' to VideoList.
       <div>
         <SearchBar />
+        <VideoList videos = { this.state.videos } />
       </div>
     );
   }
