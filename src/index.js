@@ -5,6 +5,7 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar'; //Need the full path
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import _ from 'lodash';
 
 //YouTube API Key. The API is added by npm install --save youtube-api-search
 const API_KEY = 'AIzaSyBCCso8b4QCX8CDR0YOJ6dAvPGV6ij04tg'
@@ -46,9 +47,11 @@ class App extends Component {
   }
 
   render() {
+    //lodash debounce: videoSearch is called only once every 300 ms.
+    const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
     return ( //Pass the props 'videos' to VideoList.
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           //Pass the function property onVideoSelect to ViedoList.
