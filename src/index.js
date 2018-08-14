@@ -14,15 +14,21 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] }; //videos is the property name. Its default value is an empty array.
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    }; //videos is the property name. Its default value is an empty array.
 
     //(data) => is the same as function(data)
     //'surfboards' is the search keyword.
-    YTSearch({key : API_KEY, term: 'surfboards'}, (videos) => {
+    YTSearch({key : API_KEY, term: 'cat'}, (videos) => {
       //this.setState({ videos: data}); //change (videos) => to (data) =>
       //this.setState({ videos: videos}); //change (data) => to (videos) =>
-      this.setState({ videos }); //Assign returned 'videos' to state.
-                                  //This works only when key and value is the same.
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      }); //Assign returned 'videos' to state.
+          //This works only when key and value is the same.
     });
   }
 
@@ -30,8 +36,12 @@ class App extends Component {
     return ( //Pass the props 'videos' to VideoList.
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos={ this.state.videos } />
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList
+          //Pass the function property onVideoSelect to ViedoList.
+          //In onVideoSelect function, pass selectedVideo to state.
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+          videos={this.state.videos} />
       </div>
     );
   }

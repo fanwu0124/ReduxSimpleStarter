@@ -8,7 +8,14 @@ const VideoList = (props) => { //props contains 'videos' from App's state
     //Create a <li> for each video.
     //Each video from YouTube API response has a unique etag.
     //Use etag as each <li>'s unique id.
-    return <VideoListItem key={video.etag} video = {video} />;
+    return (
+      <VideoListItem
+        //props.onVideoSelect comes from App.
+        //Pass function prop onVideoSelect to VideoListItem.
+        onVideoSelect={props.onVideoSelect}
+        key={video.etag} onv
+        video = {video} />
+    );
   });
   return (
     <ul className="col-md-4 list-group">
