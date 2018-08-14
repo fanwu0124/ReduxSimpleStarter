@@ -4,6 +4,7 @@ import ReactDom from 'react-dom'; //The default path is node_modules/
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar'; //Need the full path
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
 //YouTube API Key. The API is added by npm install --save youtube-api-search
 const API_KEY = 'AIzaSyBCCso8b4QCX8CDR0YOJ6dAvPGV6ij04tg'
@@ -29,7 +30,8 @@ class App extends Component {
     return ( //Pass the props 'videos' to VideoList.
       <div>
         <SearchBar />
-        <VideoList videos = { this.state.videos } />
+        <VideoDetail video={this.state.videos[0]}/>
+        <VideoList videos={ this.state.videos } />
       </div>
     );
   }
