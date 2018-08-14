@@ -32,10 +32,23 @@ class App extends Component {
     });
   }
 
+  //Wrap YTSearch into a function, so it can be passed to SearchBar.
+  videoSearch(term) {
+    YTSearch({key : API_KEY, term: term}, (videos) => {
+      //this.setState({ videos: data}); //change (videos) => to (data) =>
+      //this.setState({ videos: videos}); //change (data) => to (videos) =>
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      }); //Assign returned 'videos' to state.
+          //This works only when key and value is the same.
+    });
+  }
+
   render() {
     return ( //Pass the props 'videos' to VideoList.
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           //Pass the function property onVideoSelect to ViedoList.
