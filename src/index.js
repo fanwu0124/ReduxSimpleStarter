@@ -20,7 +20,8 @@ class App extends Component {
     YTSearch({key : API_KEY, term: 'surfboards'}, (videos) => {
       //this.setState({ videos: data}); //change (videos) => to (data) =>
       //this.setState({ videos: videos}); //change (data) => to (videos) =>
-      this.setState({ videos }); //This works only when key and value is the same.
+      this.setState({ videos }); //Assign returned 'videos' to state.
+                                  //This works only when key and value is the same.
     });
   }
 
