@@ -24,9 +24,8 @@ class SearchBar extends React.Component {
 
     //Whenever input is changed, assigned input value to SearchBar's state object.
     return (
-      <div>
+      <div className="search-bar">
         <input onChange = {event => this.setState({term: event.target.value})} />
-        Value of the input: {this.state.term}
       </div>
     );
   }

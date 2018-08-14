@@ -7,9 +7,9 @@ const VideoListItem = ({video, onVideoSelect}) => { //props are from video_list
   return (
     //onVideoSelect comes from VideoList.
     //Whenever <li> is clicked, call onVideoSelect function.
-    <li onClick={() => onVideoSelect(video)} className="list-gruop-item">
+    <li onClick={() => onVideoSelect(video)} className="list-group-item">
       <div className="video-list media">
-        <div className="media-left">
+        <div className="media-left video-item">
           <img className="media-object" src={imageUrl}/>
         </div>
 
